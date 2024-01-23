@@ -12,111 +12,111 @@ export default_ns="nublado"
 env=$1
 case $env in
     dev)
-	cluster="science-platform-dev"
-	proj="${cluster}-7696"
-	region="us-central1"	
-	gcloud auth login ${acct}
-	gcloud config set account ${acct}
-	gcloud config set project ${proj}
-	gcloud container clusters get-credentials ${cluster} \
-	       --region ${region} \
-	       --project ${proj}
+        cluster="science-platform-dev"
+        proj="${cluster}-7696"
+        region="us-central1"    
+        gcloud auth login ${acct}
+        gcloud config set account ${acct}
+        gcloud config set project ${proj}
+        gcloud container clusters get-credentials ${cluster} \
+               --region ${region} \
+               --project ${proj}
     ;;
     int)
-	cluster="science-platform-int"
-	proj="${cluster}-dc5d"
-	region="us-central1"
-	gcloud auth login ${acct}
-	gcloud config set account ${acct}
-	gcloud config set project ${proj}
-	gcloud container clusters get-credentials ${cluster} \
-	       --region ${region} \
-	       --project ${proj}
+        cluster="science-platform-int"
+        proj="${cluster}-dc5d"
+        region="us-central1"
+        gcloud auth login ${acct}
+        gcloud config set account ${acct}
+        gcloud config set project ${proj}
+        gcloud container clusters get-credentials ${cluster} \
+               --region ${region} \
+               --project ${proj}
     ;;
     prod)
-	cluster="science-platform-stable"
-	proj="${cluster}-6994"
-	region="us-central1"
-	gcloud auth login ${acct}
-	gcloud config set account ${acct}
-	gcloud config set project ${proj}
-	gcloud container clusters get-credentials ${cluster} \
-	       --region ${region} \
-	       --project ${proj}
+        cluster="science-platform-stable"
+        proj="${cluster}-6994"
+        region="us-central1"
+        gcloud auth login ${acct}
+        gcloud config set account ${acct}
+        gcloud config set project ${proj}
+        gcloud container clusters get-credentials ${cluster} \
+               --region ${region} \
+               --project ${proj}
     ;;
     roundtable)
-	cluster="roundtable"
-	proj="plasma-geode-127520"
-	region="us-central1-a"
-	gcloud auth login ${acct}
-	gcloud config set account ${acct}
-	gcloud config set project ${proj}
-	gcloud container clusters get-credentials ${cluster} \
-	       --region ${region} \
-	       --project ${proj}
+        cluster="roundtable"
+        proj="plasma-geode-127520"
+        region="us-central1-a"
+        gcloud auth login ${acct}
+        gcloud config set account ${acct}
+        gcloud config set project ${proj}
+        gcloud container clusters get-credentials ${cluster} \
+               --region ${region} \
+               --project ${proj}
     ;;
     roundtable-dev)
-	cluster="roundtable-dev"
-	proj="roundtable-dev-abe2"
-	region="us-central1"
-	gcloud auth login ${acct}
-	gcloud config set account ${acct}
-	gcloud config set project ${proj}
-	gcloud container clusters get-credentials ${cluster} \
-	       --region ${region} \
-	       --project ${proj}
+        cluster="roundtable-dev"
+        proj="roundtable-dev-abe2"
+        region="us-central1"
+        gcloud auth login ${acct}
+        gcloud config set account ${acct}
+        gcloud config set project ${proj}
+        gcloud container clusters get-credentials ${cluster} \
+               --region ${region} \
+               --project ${proj}
     ;;
     roundtable-prod)
-	cluster="roundtable-prod"
-	proj="roundtable-prod-f6fd"
-	region="us-central1"
-	gcloud auth login ${acct}
-	gcloud config set account ${acct}
-	gcloud config set project ${proj}
-	gcloud container clusters get-credentials ${cluster} \
-	       --region ${region} \
-	       --project ${proj}
+        cluster="roundtable-prod"
+        proj="roundtable-prod-f6fd"
+        region="us-central1"
+        gcloud auth login ${acct}
+        gcloud config set account ${acct}
+        gcloud config set project ${proj}
+        gcloud container clusters get-credentials ${cluster} \
+               --region ${region} \
+               --project ${proj}
     ;;
     scipipe)
-	cluster="scipipe-publish-prod"
-	proj="plasma-geode-127520"
-	region="us-central1-b"
-	gcloud auth login ${acct}
-	gcloud config set account ${acct}
-	gcloud config set project ${proj}
-	gcloud container clusters get-credentials ${cluster} \
-	       --region ${region} \
-	       --project ${proj}
+        cluster="scipipe-publish-prod"
+        proj="plasma-geode-127520"
+        region="us-central1-b"
+        gcloud auth login ${acct}
+        gcloud config set account ${acct}
+        gcloud config set project ${proj}
+        gcloud container clusters get-credentials ${cluster} \
+               --region ${region} \
+               --project ${proj}
     ;;
     influxdb-demo)
-	cluster="influxdb-demo"
-	proj="plasma-geode-127520"
-	region="us-central1-a"
-	gcloud auth login ${acct}
-	gcloud config set account ${acct}
-	gcloud config set project ${proj}
-	gcloud container clusters get-credentials ${cluster} \
-	       --region ${region} \
-	       --project ${proj}
+        cluster="influxdb-demo"
+        proj="plasma-geode-127520"
+        region="us-central1-a"
+        gcloud auth login ${acct}
+        gcloud config set account ${acct}
+        gcloud config set project ${proj}
+        gcloud container clusters get-credentials ${cluster} \
+               --region ${region} \
+               --project ${proj}
     ;;
     squash)
-	cluster="squash"
-	proj="plasma-geode-127520"
-	region="us-central1-a"
-	gcloud auth login ${acct}
-	gcloud config set account ${acct}
-	gcloud config set project ${proj}
-	gcloud container clusters get-credentials ${cluster} \
-	       --region ${region} \
-	       --project ${proj}
+        cluster="squash"
+        proj="plasma-geode-127520"
+        region="us-central1-a"
+        gcloud auth login ${acct}
+        gcloud config set account ${acct}
+        gcloud config set project ${proj}
+        gcloud container clusters get-credentials ${cluster} \
+               --region ${region} \
+               --project ${proj}
     ;;
     *)
-	usage
-	exit 2
-	;;
+        usage
+        exit 2
+        ;;
 esac
 kubectl config set-context $(kubectl config current-context) \
-	--namespace ${default_ns}
+        --namespace ${default_ns}
 echo "Set current namespace to \"${default_ns}\"."
 echo "Remember to activate the right kubeconfig:"
 echo "export KUBECONFIG=\"${KUBECONFIG}\""
