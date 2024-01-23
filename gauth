@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 function usage() {
     echo 1>&2 "Usage: $0 env"
-    echo 1>&2 "  env=[dev|int|prod|roundtable|roundtable-dev|gitlfs|scipipe|influxdb-demo|squash]"
+    echo 1>&2 "  env=[dev|int|prod|roundtable|roundtable-dev|roundtable-prod|"
+    echo 1>&2 "       scipipe|influxdb-demo|squash]"
 }
 
-# If you're not me, point this to wherever your GKE Kubeconfig lives.
+# Change the following to reflect your own credentials and their location
 export KUBECONFIG=~/.kube/config.adam-lsst-cloud
-# Likewise for the account name.
 export acct="adam@lsst.cloud"
 export default_ns="nublado"
 env=$1
@@ -14,7 +14,7 @@ case $env in
     dev)
 	cluster="science-platform-dev"
 	proj="${cluster}-7696"
-	region="us-central1"
+	region="us-central1"	
 	gcloud auth login ${acct}
 	gcloud config set account ${acct}
 	gcloud config set project ${proj}
@@ -57,7 +57,7 @@ case $env in
     ;;
     roundtable-dev)
 	cluster="roundtable-dev"
-	proj="${cluster}-abe2"
+	proj="roundtable-dev-abe2"
 	region="us-central1"
 	gcloud auth login ${acct}
 	gcloud config set account ${acct}
@@ -66,10 +66,10 @@ case $env in
 	       --region ${region} \
 	       --project ${proj}
     ;;
-    gitlfs)
-	cluster="gitlfs-prod"
-	proj="plasma-geode-127520"
-	region="us-central1-b"
+    roundtable-prod)
+	cluster="roundtable-prod"
+	proj="roundtable-prod-f6fd"
+	region="us-central1"
 	gcloud auth login ${acct}
 	gcloud config set account ${acct}
 	gcloud config set project ${proj}
