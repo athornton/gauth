@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 function usage() {
     echo 1>&2 "Usage: $0 env"
-    echo 1>&2 "  env=[dev|int|prod|roundtable|roundtable-dev|roundtable-prod|"
+    echo 1>&2 "  env=[demo|dev|int|prod|demo"
+    echo 1>&2 "       og-roundtable|roundtable-dev|roundtable-prod|"
     echo 1>&2 "       scipipe|influxdb-demo|squash]"
 }
 
@@ -11,10 +12,21 @@ export acct="adam@lsst.cloud"
 export default_ns="nublado"
 env=$1
 case $env in
+    demo)
+        cluster="science-platform-demo"
+        proj="${cluster}-9e05"
+        region="us-central1"
+        gcloud auth login ${acct}
+        gcloud config set account ${acct}
+        gcloud config set project ${proj}
+        gcloud container clusters get-credentials ${cluster} \
+               --region ${region} \
+               --project ${proj}
+    ;;
     dev)
         cluster="science-platform-dev"
         proj="${cluster}-7696"
-        region="us-central1"    
+        region="us-central1"
         gcloud auth login ${acct}
         gcloud config set account ${acct}
         gcloud config set project ${proj}
@@ -44,7 +56,7 @@ case $env in
                --region ${region} \
                --project ${proj}
     ;;
-    roundtable)
+    og-roundtable)
         cluster="roundtable"
         proj="plasma-geode-127520"
         region="us-central1-a"
