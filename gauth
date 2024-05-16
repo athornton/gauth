@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 function usage() {
     echo 1>&2 "Usage: $0 env"
-    echo 1>&2 "  env=[demo|dev|int|prod|demo"
+    echo 1>&2 "  env=[demo|dev|int|prod|"
     echo 1>&2 "       og-roundtable|roundtable-dev|roundtable-prod|"
     echo 1>&2 "       scipipe|influxdb-demo|squash]"
+}
+
+function _gc_flow() {
+    gcloud auth login ${acct}
+    gcloud config set account ${acct}
+    gcloud config set project ${proj}
+    gcloud container clusters get-credentials ${cluster} \
+       --region ${region} \
+       --project ${proj}
 }
 
 # Change the following to reflect your own credentials and their location
@@ -16,111 +25,60 @@ case $env in
         cluster="science-platform-demo"
         proj="${cluster}-9e05"
         region="us-central1"
-        gcloud auth login ${acct}
-        gcloud config set account ${acct}
-        gcloud config set project ${proj}
-        gcloud container clusters get-credentials ${cluster} \
-               --region ${region} \
-               --project ${proj}
     ;;
     dev)
         cluster="science-platform-dev"
         proj="${cluster}-7696"
         region="us-central1"
-        gcloud auth login ${acct}
-        gcloud config set account ${acct}
-        gcloud config set project ${proj}
-        gcloud container clusters get-credentials ${cluster} \
-               --region ${region} \
-               --project ${proj}
+        _gc_flow
     ;;
     int)
         cluster="science-platform-int"
         proj="${cluster}-dc5d"
         region="us-central1"
-        gcloud auth login ${acct}
-        gcloud config set account ${acct}
-        gcloud config set project ${proj}
-        gcloud container clusters get-credentials ${cluster} \
-               --region ${region} \
-               --project ${proj}
+        _gc_flow
     ;;
     prod)
         cluster="science-platform-stable"
         proj="${cluster}-6994"
         region="us-central1"
-        gcloud auth login ${acct}
-        gcloud config set account ${acct}
-        gcloud config set project ${proj}
-        gcloud container clusters get-credentials ${cluster} \
-               --region ${region} \
-               --project ${proj}
+        _gc_flow
     ;;
     og-roundtable)
         cluster="roundtable"
         proj="plasma-geode-127520"
         region="us-central1-a"
-        gcloud auth login ${acct}
-        gcloud config set account ${acct}
-        gcloud config set project ${proj}
-        gcloud container clusters get-credentials ${cluster} \
-               --region ${region} \
-               --project ${proj}
+        _gc_flow
     ;;
     roundtable-dev)
         cluster="roundtable-dev"
         proj="roundtable-dev-abe2"
         region="us-central1"
-        gcloud auth login ${acct}
-        gcloud config set account ${acct}
-        gcloud config set project ${proj}
-        gcloud container clusters get-credentials ${cluster} \
-               --region ${region} \
-               --project ${proj}
+        _gc_flow
     ;;
     roundtable-prod)
         cluster="roundtable-prod"
         proj="roundtable-prod-f6fd"
         region="us-central1"
-        gcloud auth login ${acct}
-        gcloud config set account ${acct}
-        gcloud config set project ${proj}
-        gcloud container clusters get-credentials ${cluster} \
-               --region ${region} \
-               --project ${proj}
+        _gc_flow
     ;;
     scipipe)
         cluster="scipipe-publish-prod"
         proj="plasma-geode-127520"
         region="us-central1-b"
-        gcloud auth login ${acct}
-        gcloud config set account ${acct}
-        gcloud config set project ${proj}
-        gcloud container clusters get-credentials ${cluster} \
-               --region ${region} \
-               --project ${proj}
+        _gc_flow
     ;;
     influxdb-demo)
         cluster="influxdb-demo"
         proj="plasma-geode-127520"
         region="us-central1-a"
-        gcloud auth login ${acct}
-        gcloud config set account ${acct}
-        gcloud config set project ${proj}
-        gcloud container clusters get-credentials ${cluster} \
-               --region ${region} \
-               --project ${proj}
+        _gc_flow
     ;;
     squash)
         cluster="squash"
         proj="plasma-geode-127520"
         region="us-central1-a"
-        gcloud auth login ${acct}
-        gcloud config set account ${acct}
-        gcloud config set project ${proj}
-        gcloud container clusters get-credentials ${cluster} \
-               --region ${region} \
-               --project ${proj}
+        _gc_flow
     ;;
     *)
         usage
